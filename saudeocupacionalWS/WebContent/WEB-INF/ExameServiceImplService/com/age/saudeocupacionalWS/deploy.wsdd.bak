@@ -1,0 +1,44 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ExameServiceImplService WSDL service -->
+
+  <service name="ExameServiceImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://saudeocupacionalWS.age.com"/>
+      <parameter name="wsdlServiceElement" value="ExameServiceImplService"/>
+      <parameter name="schemaQualified" value="http://saudeocupacionalWS.age.com"/>
+      <parameter name="wsdlServicePort" value="ExameServiceImpl"/>
+      <parameter name="className" value="com.age.saudeocupacionalWS.ExameServiceImplSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ExameServiceImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="buscarTodosExames" qname="operNS:buscarTodosExames" xmlns:operNS="http://saudeocupacionalWS.age.com" returnQName="retNS:buscarTodosExamesReturn" xmlns:retNS="http://saudeocupacionalWS.age.com" returnType="rtns:Exame" xmlns:rtns="http://saudeocupacionalWS.age.com" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="buscarTodosExames"/>
+
+      <typeMapping
+        xmlns:ns="http://saudeocupacionalWS.age.com"
+        qname="ns:Exame"
+        type="java:com.age.saudeocupacionalWS.Exame"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://saudeocupacionalWS.age.com"
+        qname="ns:Funcionario"
+        type="java:com.age.saudeocupacionalWS.Funcionario"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

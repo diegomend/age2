@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://saudeocupacionalWS.age.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://saudeocupacionalWS.age.com" xmlns:intf="http://saudeocupacionalWS.age.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://saudeocupacionalWS.age.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="buscarTodosExames">
+    <complexType/>
+   </element>
+   <element name="buscarTodosExamesResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="buscarTodosExamesReturn" type="impl:Exame"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Funcionario">
+    <sequence>
+     <element name="cargo" nillable="true" type="xsd:string"/>
+     <element name="dataAdmissao" nillable="true" type="xsd:dateTime"/>
+     <element name="dataDemissao" nillable="true" type="xsd:dateTime"/>
+     <element name="dataNascimento" nillable="true" type="xsd:dateTime"/>
+     <element name="id" type="xsd:int"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="orgaoEmissor" nillable="true" type="xsd:string"/>
+     <element name="rg" nillable="true" type="xsd:string"/>
+     <element name="setor" nillable="true" type="xsd:string"/>
+     <element name="sexo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Exame">
+    <sequence>
+     <element name="dataEmissaoAso" nillable="true" type="xsd:dateTime"/>
+     <element name="dataExame" nillable="true" type="xsd:dateTime"/>
+     <element name="funcionario" nillable="true" type="impl:Funcionario"/>
+     <element name="parecerMedico" nillable="true" type="xsd:string"/>
+     <element name="tipoExame" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="buscarTodosExamesResponse">
+
+      <wsdl:part element="impl:buscarTodosExamesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarTodosExamesRequest">
+
+      <wsdl:part element="impl:buscarTodosExames" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ExameServiceImpl">
+
+      <wsdl:operation name="buscarTodosExames">
+
+         <wsdl:input message="impl:buscarTodosExamesRequest" name="buscarTodosExamesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscarTodosExamesResponse" name="buscarTodosExamesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ExameServiceImplSoapBinding" type="impl:ExameServiceImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="buscarTodosExames">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarTodosExamesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarTodosExamesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ExameServiceImplService">
+
+      <wsdl:port binding="impl:ExameServiceImplSoapBinding" name="ExameServiceImpl">
+
+         <wsdlsoap:address location="http://localhost:8080/saudeocupacionalWS/services/ExameServiceImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
